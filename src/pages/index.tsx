@@ -1,18 +1,20 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
+import { trpc } from '@/utils/trpc'
 
 const Home: NextPage = () => {
+  const { data, isLoading, error } = trpc.useQuery(['hello'])
+
+  if (isLoading) {
+    return <>Loading...</>
+  }
+
+  if (error) {
+    return <div>{JSON.stringify(error)}</div>
+  }
+
   return (
     <div>
-      <Head>
-        <title>Blogs - Himanshu</title>
-        <meta name="description" content="Blogs by himanshu" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <p className="font-semibold">Hello</p>
-      </main>
+      {JSON.stringify(data)}
     </div>
   )
 }
