@@ -21,7 +21,7 @@ export default function Button({
         <button
             type={type}
             disabled={loading}
-            className={`bg-red-500 px-4 py-2 rounded-md flex text-white font-semibold ${className}`}
+            className={`bg-blue-600 px-4 py-2 rounded-md flex text-white font-semibold ${className}`}
             {...rest}
         >
             {!loading ? children : 'Please Wait ...'}

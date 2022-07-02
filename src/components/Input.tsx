@@ -1,27 +1,27 @@
 import { FC } from "react"
 
 type Props = {
-    name: string,
+    name?: string,
     required?: boolean,
     className?: string,
-    id?: string,
-    placeholder?: string
+    placeholder?: string,
+    type?: string,
 }
 
 const Input: FC<Props> = ({
-    name,
     className,
-    id,
     placeholder,
-    required = false
+    required = false,
+    type = "",
+    ...rest
 }) => {
     return (
         <input
             required={required}
-            name={name}
-            className={`form-input focus:ring-red-500 focus:border-red-500 rounded-md ${className}`}
-            id={id}
+            type={type}
+            className={`form-input rounded-md ${className}`}
             placeholder={placeholder}
+            {...rest}
         />
     )
 }

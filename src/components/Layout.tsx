@@ -6,6 +6,7 @@ type Props = {
     title?: string,
     keywords?: string,
     description?: string,
+    header?: Boolean,
     children: ReactNode
 }
 
@@ -13,7 +14,8 @@ export default function Layout({
     title,
     keywords,
     description,
-    children
+    header = true,
+    children,
 }: Props) {
     return (
         <>
@@ -24,7 +26,7 @@ export default function Layout({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className="h-screen w-full">
-                <Header />
+                {header && <Header />}
                 <div className="max-w-[1240px] w-full mx-auto p-2 flex justify-center items-center h-[90%]">
                     {children}
                 </div>
