@@ -6,10 +6,16 @@ import { trpc } from "@/utils/trpc";
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { RequestOtpSchema } from "@/schema/user.schema";
+import { useQueryClient } from 'react-query'
 
 function VerifyToken({ hash }: { hash: string }) {
+    const queryClient = useQueryClient();
     const router = useRouter();
-    const { isLoading, data } = trpc.useQuery(['users.verify-otp', { hash }])
+    const { isLoading, data } = trpc.useQuery(['users.verify-otp', { hash }], {
+        onSuccess: () => {
+            queryClient.invalidateQueries('users.me');
+        }
+    })
 
     if (isLoading) return <p>Veryfying...</p>;
 
