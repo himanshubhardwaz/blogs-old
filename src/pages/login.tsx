@@ -4,16 +4,34 @@ import Alert from "@/components/Alert"
 import { useForm } from "react-hook-form";
 import { trpc } from "@/utils/trpc";
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 import { RequestOtpSchema } from "@/schema/user.schema";
+
+function VerifyToken({ hash }: { hash: string }) {
+    const { isLoading, isSuccess } = trpc.useQuery(['users.verify-otp', { hash }])
+    if (isLoading) return <p>Veryfying...</p>;
+
+    // redirct here
+    return <p>redirecting...</p>
+}
 
 export default function LoginPage() {
     const { handleSubmit, register } = useForm<RequestOtpSchema>();
+    const router = useRouter();
 
     const { mutate, error, isLoading, isSuccess } = trpc.useMutation(['users.request-otp'])
 
     const onSubmit = (values: RequestOtpSchema) => {
         mutate(values);
     }
+
+    const hash = router.asPath.split('#token')[1];
+
+    if (hash) return (
+        <Layout header={false}>
+            <VerifyToken hash={hash} />
+        </Layout>
+    )
 
     return (
         <Layout header={true}>
