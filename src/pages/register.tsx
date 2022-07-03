@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
 import Button from "@/components/Button"
 import Alert from "@/components/Alert"
+import Link from "next/link"
 
 export default function RegisterPage() {
     const { handleSubmit, register } = useForm<CreateUserInput>();
@@ -17,14 +18,14 @@ export default function RegisterPage() {
     })
 
     const onSubmit = (values: CreateUserInput) => {
-        console.log(values);
         mutate(values);
     }
 
     return (
-        <Layout header={false}>
+        <Layout header={true}>
+            <p className="text-xl text-center my-4">Want to use this platform to document your tech journey? Sign up Now.</p>
             <form
-                className="flex gap-3 lg:w-96 items-center justify-center flex-col"
+                className="flex gap-3 w-4/5 md:w-2/3 lg:w-1/2 max-w-[1200px] items-center justify-center flex-col"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <div className="w-full">
@@ -54,6 +55,14 @@ export default function RegisterPage() {
                     </Button>
                 </div>
             </form>
+            <div className="flex gap-2">
+                <p className="font-semibold text-gray-500">Already have an account?</p>
+                <Link href="/login">
+                    <p className="underline cursor-pointer">
+                        Login
+                    </p>
+                </Link>
+            </div>
         </Layout>
     )
 }

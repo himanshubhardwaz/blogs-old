@@ -5,6 +5,7 @@ import { loggerLink } from '@trpc/client/links/loggerLink'
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import superjson from 'superjson'
 import { AppRouter } from '@/server/route/app.router'
+import { url } from '@/contants'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
@@ -12,9 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 export default withTRPC<AppRouter>({
   config({ ctx }) {
-    const url = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/trpc` :
-      `http://localhost:3000/api/trpc`
-
+    url
     const links = [
       loggerLink(),
       httpBatchLink({

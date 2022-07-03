@@ -25,9 +25,9 @@ export default function Layout({
                 <meta name="description" content={description}></meta>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="h-screen w-full">
+            <main className="h-screen w-screen">
                 {header && <Header />}
-                <div className="max-w-[1240px] w-full mx-auto p-2 flex justify-center items-center h-[90%]">
+                <div className="max-w-[1240px] w-full mx-auto p-2 flex flex-col justify-center items-center h-[90%]">
                     {children}
                 </div>
             </main>

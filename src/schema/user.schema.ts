@@ -10,4 +10,10 @@ export const createUserOutputSchema = z.object({
     email: z.string().email(),
 })
 
+export const requestOtpSchema = z.object({
+    email: z.string().email(),
+    redirect: z.string().default("/")
+})
+
 export type CreateUserInput = z.TypeOf<typeof createUserSchema>
+export type RequestOtpSchema = z.TypeOf<typeof requestOtpSchema>
