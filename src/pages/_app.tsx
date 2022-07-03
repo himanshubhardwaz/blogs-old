@@ -6,9 +6,25 @@ import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import superjson from 'superjson'
 import { AppRouter } from '@/server/route/app.router'
 import { url } from '@/contants'
+import { trpc } from '@/utils/trpc'
+import { UserContextProvider } from '@/context/user.context'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const { data, isLoading, error } = trpc.useQuery(['users.me']);
+
+  if (isLoading) {
+    return (
+      <p>
+        Loading user...
+      </p>
+    )
+  }
+
+  return (
+    <UserContextProvider value={data}>
+      <Component {...pageProps} />
+    </UserContextProvider>
+  )
 }
 
 export default withTRPC<AppRouter>({

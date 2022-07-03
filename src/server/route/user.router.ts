@@ -107,3 +107,8 @@ export const userRouter = createRouter()
             }
         }
     })
+    .query('me', {
+        async resolve({ ctx }) {
+            return ctx.user
+        }
+    })
