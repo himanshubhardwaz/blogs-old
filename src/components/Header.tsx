@@ -17,7 +17,7 @@ export default function Header() {
                 </Link>
                 <nav className="flex flex-wrap md:w-4/5
                 items-center justify-end md:ml-auto">
-                    <Link href="/blog">
+                    <Link href="/post">
                         <a className="mx-5 cursor-pointer uppercase
                         hover:text-indigo-300">
                             Blog

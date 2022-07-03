@@ -44,7 +44,7 @@ export default function LoginForm() {
     )
 
     return (
-        <Layout header={true}>
+        <Layout header={true} className="justify-center">
             <p className="text-xl text-center my-4">Login to your account to start blogging.</p>
             <form
                 className="flex gap-3 w-4/5 md:w-2/3 lg:w-1/2 max-w-[1200px] items-center justify-center flex-col"

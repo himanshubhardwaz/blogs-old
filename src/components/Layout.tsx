@@ -7,7 +7,8 @@ type Props = {
     keywords?: string,
     description?: string,
     header?: Boolean,
-    children: ReactNode
+    children: ReactNode,
+    className?: string
 }
 
 export default function Layout({
@@ -16,6 +17,7 @@ export default function Layout({
     description,
     header = true,
     children,
+    className = ""
 }: Props) {
     return (
         <>
@@ -27,7 +29,7 @@ export default function Layout({
             </Head>
             <main className="h-screen w-screen">
                 {header && <Header />}
-                <div className="max-w-[1240px] w-full mx-auto p-2 flex flex-col justify-center items-center h-[90%]">
+                <div className={`max-w-[1240px] w-full mx-auto p-2 flex flex-col items-center h-[90%] ${className}`}>
                     {children}
                 </div>
             </main>
