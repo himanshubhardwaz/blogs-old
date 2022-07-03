@@ -102,8 +102,23 @@ export const userRouter = createRouter()
 
             ctx.res.setHeader('Set-Cookie', serialize('token', jwt, { path: '/' }))
 
+            const deleteToken = await ctx.prisma.loginToken.deleteMany({
+                where: {
+                    user: {
+                        id: token.user.id
+                    }
+                }
+            })
+
+            if (deleteToken) {
+                return {
+                    redirect: token.redirect
+                }
+            }
+
             return {
-                redirect: token.redirect
+                redirect: token.redirect,
+                wasTokensDeleted: false
             }
         }
     })
