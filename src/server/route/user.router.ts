@@ -2,7 +2,7 @@ import { createUserSchema, requestOtpSchema } from "@/schema/user.schema";
 import * as trpc from "@trpc/server"
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { createRouter } from "../createRouter";
-import { url } from "@/contants"
+import { baseUrl } from "@/contants"
 import { sendLoginEmail } from "@/utils/mailer";
 import { encode } from "@/utils/base64";
 
@@ -62,7 +62,7 @@ export const userRouter = createRouter()
 
             await sendLoginEmail({
                 token: encode(`${token.id}:${user.email}`),
-                url,
+                url: baseUrl,
                 email: user.email
             })
 

@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 type Props = {
-    type: string,
+    type: "success" | "error",
     message: string,
     className?: string
 }
